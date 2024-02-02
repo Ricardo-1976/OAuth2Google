@@ -1,7 +1,7 @@
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+import { use, serializeUser, deserializeUser } from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth2";
 require("dotenv").config();
-passport.use(
+use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -15,11 +15,11 @@ passport.use(
   )
 );
 
-passport.serializeUser((user,done) => {
+serializeUser((user,done) => {
   done(null,user)
 });
 
-passport.deserializeUser((user,done) => {
+deserializeUser((user,done) => {
   done(null,user);
 })
 
